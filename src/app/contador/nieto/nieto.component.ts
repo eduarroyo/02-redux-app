@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-nieto',
@@ -6,4 +6,14 @@ import { Component } from '@angular/core';
 })
 export class NietoComponent {
 
+  @Input()
+  contador: number = 0;
+
+  @Output() 
+  contadorCambio = new EventEmitter<number>();
+
+  restablecer() {
+    this.contador = 0;
+    this.contadorCambio.emit(this.contador);
+  }
 }
