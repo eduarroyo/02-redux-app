@@ -1,7 +1,9 @@
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
+import { StoreModule } from '@ngrx/store';
+import { contadorReducer } from './contador/contador.reducer';
+
 import { AppComponent } from './app.component';
 import { HijoComponent } from './contador/hijo/hijo.component';
 import { NietoComponent } from './contador/nieto/nieto.component';
@@ -14,11 +16,9 @@ import { NietoComponent } from './contador/nieto/nieto.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    StoreModule.forRoot({ contador: contadorReducer }),
   ],
-  providers: [
-    provideClientHydration()
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
