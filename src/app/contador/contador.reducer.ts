@@ -1,14 +1,16 @@
 import { Action } from "@ngrx/store";
-import { incrementar, decrementar } from "./contador.actions";
+import { ActionTypes, Incrementar } from "./contador.actions";
 
 export function contadorReducer(state: number = 10, action: Action) {
 
     switch(action.type) {
 
-        case incrementar.type:
+        case ActionTypes.Incrementar:
             return state +1;
-        case decrementar.type:
-            return state +1;
+        case ActionTypes.Decrementar:
+            return state -1;
+        case ActionTypes.Restablecer:
+            return 0;
             
         default: 
             return state

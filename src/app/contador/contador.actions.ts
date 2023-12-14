@@ -1,4 +1,19 @@
-import { createAction } from '@ngrx/store';
+import { Action, createAction } from '@ngrx/store';
 
-export const incrementar = createAction('[Contador] Incrementar');
-export const decrementar = createAction('[Contador] Decrementar');
+export enum ActionTypes {
+    Incrementar = '[Contador] Incrementar',
+    Decrementar = '[Contador] Decrementar',
+    Restablecer = '[Contador] Restablecer'
+}
+
+export class Incrementar implements Action {
+    readonly type = ActionTypes.Incrementar;
+}
+
+export class Decrementar implements Action {
+    readonly type = ActionTypes.Decrementar;
+}
+
+export class Restablecer implements Action {
+    readonly type = ActionTypes.Restablecer;
+}
