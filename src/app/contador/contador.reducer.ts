@@ -15,5 +15,4 @@ export function contadorReducer(state: number = 10, action: Action) {
         default: 
             return state
     }
-
 }

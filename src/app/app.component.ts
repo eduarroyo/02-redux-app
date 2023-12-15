@@ -3,6 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { Decrementar, Incrementar } from './contador/contador.actions';
 import { Observable } from 'rxjs';
 
+
 interface AppState {
   contador:number;
 }
