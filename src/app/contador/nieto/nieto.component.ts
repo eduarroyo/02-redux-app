@@ -1,4 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../app.reducers';
+import { restablecer } from '../contador.actions';
 
 @Component({
   selector: 'app-nieto',
@@ -6,14 +9,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class NietoComponent {
 
-  @Input()
-  contador: number = 0;
+  contador!: number;
 
-  @Output() 
-  contadorCambio = new EventEmitter<number>();
+  constructor(private store: Store<AppState>) {
+    this.store.select('contador').subscribe(contador => this.contador=contador);
+  }
 
   restablecer() {
-    this.contador = 0;
-    this.contadorCambio.emit(this.contador);
+    this.store.dispatch(restablecer());
   }
 }
