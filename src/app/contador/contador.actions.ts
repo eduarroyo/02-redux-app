@@ -1,19 +1,15 @@
-import { Action, createAction } from '@ngrx/store';
+import { createAction, props  } from '@ngrx/store';
 
-export enum ActionTypes {
-    Incrementar = '[Contador] Incrementar',
-    Decrementar = '[Contador] Decrementar',
-    Restablecer = '[Contador] Restablecer'
-}
+export const incrementar = createAction('[Contador] Incrementar');
+export const decrementar = createAction('[Contador] Decrementar');
+export const reset       = createAction('[Contador] Reset');
 
-export class Incrementar implements Action {
-    readonly type = ActionTypes.Incrementar;
-}
+export const multiplicar = createAction(
+    '[Contador] Multiplicar',
+    props<{numero: number}>()
+);
 
-export class Decrementar implements Action {
-    readonly type = ActionTypes.Decrementar;
-}
-
-export class Restablecer implements Action {
-    readonly type = ActionTypes.Restablecer;
-}
+export const dividir = createAction(
+    '[Contador] Dividir',
+    props<{numero: number}>()
+);

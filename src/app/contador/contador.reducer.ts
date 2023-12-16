@@ -1,18 +1,16 @@
-import { Action } from "@ngrx/store";
-import { ActionTypes, Incrementar } from "./contador.actions";
+import { Action, createReducer, on } from '@ngrx/store';
+import { incrementar, decrementar, multiplicar, dividir, reset } from './contador.actions';
+import { AppState } from '../app.reducers';
 
-export function contadorReducer(state: number = 10, action: Action) {
 
-    switch(action.type) {
+export const initialState = 20;
 
-        case ActionTypes.Incrementar:
-            return state +1;
-        case ActionTypes.Decrementar:
-            return state -1;
-        case ActionTypes.Restablecer:
-            return 0;
-            
-        default: 
-            return state
-    }
+const _contadorReducer = createReducer(initialState,
+    on( incrementar, state => state + 1),
+    on( decrementar, state => state - 1),
+    on( reset      , state => initialState )
+);
+
+export function contadorReducer(state: number = initialState, action: Action) {
+    return _contadorReducer(state, action);
 }

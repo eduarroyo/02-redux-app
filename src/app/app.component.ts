@@ -1,37 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { Decrementar, Incrementar } from './contador/contador.actions';
-import { Observable } from 'rxjs';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as actions from './contador/contador.actions';
+import { AppState } from './app.reducers';
 
-
-interface AppState {
-  contador:number;
-}
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'redux-app';
 
-  contador$!: Observable<number>;
+  contador!: number;
 
   constructor(private store: Store<AppState>) {
-  }
-
-  ngOnInit(): void {
-    this.store.subscribe(state => {      
-      this.contador$ = this.store.pipe(select('contador'));
-    });
+    this.store
+      .select('contador')
+      .subscribe(contador => this.contador=contador);
   }
 
   incrementar() {
-    this.store.dispatch(new Incrementar());
+    this.store.dispatch(actions.incrementar());
   }
 
   decrementar() {
-    this.store.dispatch(new Decrementar());
+    this.store.dispatch(actions.decrementar());
   }
-
 }
